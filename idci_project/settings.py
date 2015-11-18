@@ -89,8 +89,8 @@ DATABASES = {
         'NAME': 'baladewa88$idci1',
         'ENGINE': 'django.db.backends.mysql',
         'USER': 'baladewa88',
-        'PASSWORD': 'AdminIDCI2015',
-        'HOST': 'localhost',
+        'PASSWORD': 'AdminIdci2015',
+        'HOST': 'baladewa88.mysql.pythonanywhere-services.com',
         'OPTIONS': {
           'autocommit': True,
         },
