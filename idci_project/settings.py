@@ -86,9 +86,9 @@ WSGI_APPLICATION = 'idci_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'NAME': 'idci1',
+        'NAME': 'baladewa88$idci1',
         'ENGINE': 'django.db.backends.mysql',
-        'USER': 'admin',
+        'USER': 'baladewa88',
         'PASSWORD': 'AdminIDCI2015',
         'HOST': 'localhost',
         'OPTIONS': {
