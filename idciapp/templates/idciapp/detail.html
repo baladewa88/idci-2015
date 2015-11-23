@@ -4,4 +4,27 @@
 
 {% block content %}
 {{paperdetail.abstract|linebreaks }}
+<hr>
+Publisher : {{paperdetail.publisher }} | {{paperdetail.crawlDate }}
+<br>Citation : {{paperdetail.ncites}} | Self Citation : {{paperdetail.selfCites}}
+<br><br><p>
+References : <br>
+<ol>
+{% for d in ref %}
+<li>{{ d.authors }},{{ d.title}}</li>
+{% endfor %}
+</ol>
+</p>
+{% endblock %}
+
+{% block rightbar %}
+<h2>Related Category</h2>:<br><br>
+{{paperdetail.abstract|linebreaks }}
+{% endblock %}
+
+{% block middletext %}
+Keywords : 
+{% for a in keyword %}
+{{ a.keyword }},
+{% endfor %}
 {% endblock %}

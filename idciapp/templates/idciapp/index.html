@@ -72,19 +72,23 @@
     <!-- Page Content -->
     <div class="container">
 	
-	{% block content %}
+	
 
         <!-- Heading Row -->
         <div class="row">
             <div class="col-md-8">
+    		{% block content %}
                 <img class="img-responsive img-rounded" src="http://placehold.it/900x350" alt="">
-            </div>
+    {% endblock %}
+	        </div>
             <!-- /.col-md-8 -->
             <div class="col-md-4">
-                <h1>Indonesian Citation Index ( IDCI )</h1>
+			{% block rightbar %}
+	            <h1>Indonesian Citation Index ( IDCI )</h1>
                 <p>IDCI is text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make</p>
                 <a class="btn btn-primary btn-lg" href="#">Read More</a>
-            </div>
+            {% endblock %}
+	</div>
             <!-- /.col-md-4 -->
         </div>
         <!-- /.row -->
@@ -95,8 +99,11 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="well text-center">
+				{% block middletext %}
                    Indonesian Data Citation Index | LPPM ITB. Office Hour 08.00am - 04.00pm on Monday - Friday. Phone : 022 - 1234567
-                </div>
+                {% endblock %}
+	
+				</div>
             </div>
             <!-- /.col-lg-12 -->
         </div>
@@ -138,7 +145,6 @@
         </div>
         <!-- /.row -->
 
-	{% endblock %}
         <!-- Footer -->
         <footer>
             <div class="row">

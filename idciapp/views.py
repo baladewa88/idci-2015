@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Papers
+from .models import Papers, Keywords, Citations
 from django.utils import timezone
 
 # Create your views here.
@@ -11,4 +11,6 @@ def index(request):
 
 def paperdetail(request, pk):
     detailPaper = get_object_or_404(Papers,pk=pk)
-    return render(request, 'idciapp/detail.html', {'paperdetail':detailPaper})
+    key = Keywords.objects.filter(paperid=pk).order_by('id')
+    ref = Citations.objects.filter(paperid=pk).order_by('id')
+    return render(request, 'idciapp/detail.html', {'paperdetail':detailPaper, 'keyword':key, 'ref':ref, 'inc':0})
