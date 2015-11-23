@@ -86,11 +86,11 @@ WSGI_APPLICATION = 'idci_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'NAME': 'baladewa88$idci1',
+        'NAME': 'idci1',
         'ENGINE': 'django.db.backends.mysql',
-        'USER': 'baladewa88',
-        'PASSWORD': 'AdminIdci2015',
-        'HOST': 'baladewa88.mysql.pythonanywhere-services.com',
+        'USER': 'admin',
+        'PASSWORD': 'AdminIDCI2015',
+        'HOST': 'localhost',
         'OPTIONS': {
           'autocommit': True,
         },
@@ -115,4 +115,3 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = "/home/baladewa88/idci-2015/idciapp/static"
