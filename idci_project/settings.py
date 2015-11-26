@@ -95,11 +95,14 @@ WSGI_APPLICATION = 'idci_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'NAME': 'idci1',
+        #'NAME': 'idci1',
+        'NAME': 'idci$default',
         'ENGINE': 'django.db.backends.mysql',
-        'USER': 'admin',
+        #'USER': 'admin',
+        'USER': 'idci',
         'PASSWORD': 'AdminIDCI2015',
-        'HOST': 'localhost',
+        #'HOST': 'localhost',
+        'HOST': 'idci.mysql.pythonanywhere-services.com',
         'OPTIONS': {
           'autocommit': True,
         },
