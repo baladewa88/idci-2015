@@ -3,6 +3,14 @@
 {% block title %}IDCI | Paper Detail{% endblock %}
 
 {% block content %}
+<h2>{{ paperdetail.title }} </h2>
+Author :
+<ol>
+{% for penulis in author %}
+<li>{{ penulis.name }},{{ penulis.email}}. {{ penulis.affil}}</li>
+{% endfor %}
+</ol>
+<hr>
 {{paperdetail.abstract|linebreaks }}
 <hr>
 Publisher : {{paperdetail.publisher }} | {{paperdetail.crawlDate }}

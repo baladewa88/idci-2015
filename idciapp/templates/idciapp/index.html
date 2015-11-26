@@ -42,7 +42,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="{%	url	"index" %}">
                     <img src="{% static 'images/logoputih.png' %}" alt="">
                 </a>
             </div>
@@ -53,7 +53,7 @@
                         <a href="/about">About IDCI</a>
                     </li>
                     <li>
-                        <a href="/search">Advanced Search</a>
+                        <a href="{%	url	"search" %}">Advanced Search</a>
                     </li>
                     <li>
                         <a href="/admin">Submit Paper</a>
@@ -75,8 +75,7 @@
 	
 
         <!-- Heading Row -->
-        <div class="row">
-            <div class="col-md-8">
+        <div class="row"> <div class="col-md-8">
     		{% block content %}
                 <img class="img-responsive img-rounded" src="http://placehold.it/900x350" alt="">
     {% endblock %}
@@ -84,9 +83,38 @@
             <!-- /.col-md-8 -->
             <div class="col-md-4">
 			{% block rightbar %}
-	            <h1>Indonesian Citation Index ( IDCI )</h1>
-                <p>IDCI is text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make</p>
-                <a class="btn btn-primary btn-lg" href="#">Read More</a>
+			<ul class="nav nav-tabs">
+  <li class="active"><a href="#title">Title</a></li>
+  <li><a href="#author">Author</a></li>
+  <li><a href="#publisher">Publisher</a></li>
+</ul>
+
+<div class="tab-content">
+    <div id="title" class="tab-pane fade in active">
+      <h3>Search Based on Title</h3>
+
+    <form method="GET" action="search" class="post-form">
+        <table>
+            {{ form.as_p }}
+            <tr>
+                <td colspan=2>
+                    <input type="submit" value="Search" class="save	btn	btn-default">
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    </div>
+    <div id="author" class="tab-pane fade">
+      <h3>Menu 1</h3>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+    <div id="publisher" class="tab-pane fade">
+      <h3>Menu 2</h3>
+      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+    </div>
+  </div>
+
             {% endblock %}
 	</div>
             <!-- /.col-md-4 -->
@@ -111,35 +139,33 @@
 
         <!-- Content Row -->
         <div class="row">
-            <div class="col-md-4">
-                <h2>Popular Citation</h2>
+            <div class="col-md-6">
+			{% block topleft %}
+                <h3>Popular Citation</h3>
                 {% for post in popular_paper %}
     <div>
-        <h3><a href="">{{ post.title }}</a></h3
+        <h4><a href="">{{ post.title }}</a></h4>
         <p>Cites: {{ post.ncites }} || Publisher : {{post.publisher}}</p>
 
     </div>
 {% endfor %}
 				
 <a class="btn btn-default" href="#">More Info</a>
+{% endblock %}
             </div>
             <!-- /.col-md-4 -->
-            <div class="col-md-4">
-                <h2>Latest Papers</h2>
+            <div class="col-md-6">
+			{% block topmid %}
+                <h3>Latest Papers</h3>
                 {% for post in paper %}
     <div>
-        <h3><a href=" {% url "paperdetail" pk=post.pk %} ">{{ post.title }}</a></h3
+        <h4><a href=" {% url "paperdetail" pk=post.pk %} ">{{ post.title }}</a></h4>
         <p>Cites: {{ post.ncites }} || Publisher : {{post.publisher}}</p>
 
     </div>
 {% endfor %}
 <a class="btn btn-default" href="#">Show Full List</a>
-            </div>
-            <!-- /.col-md-4 -->
-            <div class="col-md-4">
-                <h2>Popular Paper</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe rem nisi accusamus error velit animi non ipsa placeat. Recusandae, suscipit, soluta quibusdam accusamus a veniam quaerat eveniet eligendi dolor consectetur.</p>
-                <a class="btn btn-default" href="#">More Info</a>
+{% endblock %}
             </div>
             <!-- /.col-md-4 -->
         </div>
@@ -156,13 +182,21 @@
 
     </div>
     <!-- /.container -->
-
+	
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="{% static 'js/jquery.js' %}"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
 
+	
+  <script>
+$(document).ready(function(){
+    $(".nav-tabs a").click(function(){
+        $(this).tab('show');
+    });
+});
+</script>
 </body>
 
 </html>
