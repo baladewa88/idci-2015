@@ -26,7 +26,18 @@ References : <br>
 {% endblock %}
 
 {% block rightbar %}
-<h2>Related Category</h2>:<br><br>
+<div class="panel panel-default">
+  <div class="panel-heading"><h4>Cited by {{paperdetail.ncites}} documents</h4></div>
+  <div class="panel-body">
+  <ul>{% for e in title %}
+  
+<li>{{ e.title }} <br><i> Authors{{ e.authors}}</i></li>
+{% endfor %}
+</ul>
+  </div>
+</div>
+<hr>
+<h2>Related Document</h2><br><br>
 {{paperdetail.abstract|linebreaks }}
 {% endblock %}
 

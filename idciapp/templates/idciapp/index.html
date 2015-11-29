@@ -144,8 +144,8 @@
                 <h3>Popular Citation</h3>
                 {% for post in popular_paper %}
     <div>
-        <h4><a href="">{{ post.title }}</a></h4>
-        <p>Cites: {{ post.ncites }} || Publisher : {{post.publisher}}</p>
+        <h4><a href="{% url "paperdetail" pk=post.pk judul=post.title %}">{{ post.title }}</a></h4>
+        <p>Citation: {{ post.ncites }} times || Publisher : {{post.publisher}}</p>
 
     </div>
 {% endfor %}
@@ -159,8 +159,8 @@
                 <h3>Latest Papers</h3>
                 {% for post in paper %}
     <div>
-        <h4><a href=" {% url "paperdetail" pk=post.pk %} ">{{ post.title }}</a></h4>
-        <p>Cites: {{ post.ncites }} || Publisher : {{post.publisher}}</p>
+        <h4><a href=" {% url "paperdetail" pk=post.pk judul=post.title %} ">{{ post.title }}</a></h4>
+        <p>Citations: {{ post.ncites }} times || Publisher : {{post.publisher}}</p>
 
     </div>
 {% endfor %}

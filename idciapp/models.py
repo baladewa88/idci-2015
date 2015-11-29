@@ -333,6 +333,9 @@ class Papers(models.Model):
         #managed = False
         db_table = 'papers'
 
+    def __str__(self):
+        return self.title
+
 
 class PapersVersionshadow(models.Model):
     id = models.ForeignKey(Papers, db_column='id', primary_key=True)

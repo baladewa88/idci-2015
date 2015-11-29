@@ -99,7 +99,7 @@ DATABASES = {
         'NAME': 'idci$default',
         'ENGINE': 'django.db.backends.mysql',
         #'USER': 'admin',
-        'USER': 'idci',
+        'USER': 'idci2',
         'PASSWORD': 'AdminIDCI2015',
         #'HOST': 'localhost',
         'HOST': 'idci.mysql.pythonanywhere-services.com',
@@ -127,4 +127,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/home/idci/idci-2015/idciapp/static/'
+STATIC_ROOT = '/home/idci2/idci-2015/idciapp/static/'
