@@ -321,13 +321,13 @@ class Papers(models.Model):
     pubaddress = models.CharField(db_column='pubAddress', max_length=100, blank=True, null=True)  # Field name made lowercase.
     tech = models.CharField(max_length=100, blank=True, null=True)
     public = models.IntegerField()
-    ncites = models.IntegerField()
+    ncites = models.IntegerField(default=0)
     versionname = models.CharField(db_column='versionName', max_length=20, blank=True, null=True)  # Field name made lowercase.
-    crawldate = models.DateTimeField(db_column='crawlDate')  # Field name made lowercase.
+    crawldate = models.DateTimeField(db_column='crawlDate', blank=True, null=True, auto_now=True)  # Field name made lowercase.
     repositoryid = models.CharField(db_column='repositoryID', max_length=15, blank=True, null=True)  # Field name made lowercase.
     conversiontrace = models.CharField(db_column='conversionTrace', max_length=255, blank=True, null=True)  # Field name made lowercase.
-    selfcites = models.IntegerField(db_column='selfCites')  # Field name made lowercase.
-    versiontime = models.DateTimeField(db_column='versionTime')  # Field name made lowercase.
+    selfcites = models.IntegerField(db_column='selfCites',default=0)  # Field name made lowercase.
+    versiontime = models.DateTimeField(db_column='versionTime', blank=True, null=True, auto_now=True)  # Field name made lowercase.
 
     class Meta:
         #managed = False
