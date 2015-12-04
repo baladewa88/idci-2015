@@ -7,8 +7,8 @@ from .forms import PaperForm, PaperSearch
 
 def index(request):
     formd = PaperSearch()
-    paperList = Papers.objects.order_by('-crawldate')[:5]
-    popularPaperList = Papers.objects.order_by('-ncites')[:5]
+    paperList = Papers.ea.order_by('-crawldate')[:5]
+    popularPaperList = Papers.ea.order_by('-ncites')[:5]
     return render(request, 'idciapp/index.html', {'paper':paperList, 'popular_paper':popularPaperList, 'form':formd})
 
 def paperdetail(request, pk, judul):

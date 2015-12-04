@@ -319,6 +319,7 @@ class Papers(models.Model):
 
     ea = PapersId()
     print ("EEAAAA => "+str(ea.defineId()))
+
     id = models.CharField(primary_key=True, max_length=100, default=ea.defineId())   
     version = models.IntegerField()
     cluster = models.BigIntegerField(blank=True, null=True)
