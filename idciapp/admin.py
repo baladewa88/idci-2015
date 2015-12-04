@@ -9,6 +9,7 @@ class PapersAdmin(admin.ModelAdmin):
                 ('Publisher',{'fields':['publisher','pubaddress']}),
                  ('Status',{'fields':['version','versionname','public']}),]
     list_filter = [('crawldate')]
+    list_display = ('id','title','ncites','selfcites')
     ordering = ('-crawldate',)
     
 admin.site.register(Papers, PapersAdmin)

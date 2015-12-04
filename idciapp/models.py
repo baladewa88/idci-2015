@@ -320,10 +320,10 @@ class Papers(models.Model):
     ea = PapersId()
     print ("EEAAAA => "+str(ea.defineId()))
 
-    id = models.CharField(primary_key=True, max_length=100, default=ea.defineId())   
+    id = models.CharField(primary_key=True, max_length=100, default=ea.defineId(), verbose_name = 'ID')   
     version = models.IntegerField()
     cluster = models.BigIntegerField(blank=True, null=True)
-    title = models.CharField(max_length=255, blank=True, null=True)
+    title = models.CharField(max_length=255, blank=True, null=True, verbose_name = 'Title')
     abstract = models.TextField(blank=True, null=True)
     year = models.IntegerField(blank=True, null=True)
     venue = models.CharField(max_length=100, blank=True, null=True)
@@ -335,12 +335,12 @@ class Papers(models.Model):
     pubaddress = models.CharField(db_column='pubAddress', max_length=100, blank=True, null=True)  # Field name made lowercase.
     tech = models.CharField(max_length=100, blank=True, null=True)
     public = models.IntegerField()
-    ncites = models.IntegerField(default=0)
+    ncites = models.IntegerField(default=0, verbose_name = 'Citations')
     versionname = models.CharField(db_column='versionName', max_length=20, blank=True, null=True)  # Field name made lowercase.
     crawldate = models.DateTimeField(db_column='crawlDate', blank=True, null=True, auto_now=True)  # Field name made lowercase.
     repositoryid = models.CharField(db_column='repositoryID', max_length=15, blank=True, null=True)  # Field name made lowercase.
     conversiontrace = models.CharField(db_column='conversionTrace', max_length=255, blank=True, null=True)  # Field name made lowercase.
-    selfcites = models.IntegerField(db_column='selfCites',default=0)  # Field name made lowercase.
+    selfcites = models.IntegerField(db_column='selfCites',default=0, verbose_name = 'Self Citation')  # Field name made lowercase.
     versiontime = models.DateTimeField(db_column='versionTime', blank=True, null=True, auto_now=True)  # Field name made lowercase.
     
     class Meta:
