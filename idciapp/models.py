@@ -11,6 +11,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 
+rowCount = 0
 
 class Acknowledgmentcontexts(models.Model):
     id = models.BigIntegerField(primary_key=True)
@@ -304,9 +305,21 @@ class LinkTypes(models.Model):
         #managed = False
         db_table = 'link_types'
 
-
+class PapersId(models.Manager):
+    def defineId(self):
+        from django.db import connection
+        cursor = connection.cursor()
+        cursor.execute("""SELECT * FROM papers""")
+        rowCount = 0
+        for row in cursor.fetchall():
+            rowCount=rowCount+1
+        return rowCount+1
+        
 class Papers(models.Model):
-    id = models.CharField(primary_key=True, max_length=100)
+
+    ea = PapersId()
+    print ("EEAAAA => "+str(ea.defineId()))
+    id = models.CharField(primary_key=True, max_length=100, default=ea.defineId())   
     version = models.IntegerField()
     cluster = models.BigIntegerField(blank=True, null=True)
     title = models.CharField(max_length=255, blank=True, null=True)
@@ -328,7 +341,7 @@ class Papers(models.Model):
     conversiontrace = models.CharField(db_column='conversionTrace', max_length=255, blank=True, null=True)  # Field name made lowercase.
     selfcites = models.IntegerField(db_column='selfCites',default=0)  # Field name made lowercase.
     versiontime = models.DateTimeField(db_column='versionTime', blank=True, null=True, auto_now=True)  # Field name made lowercase.
-
+    
     class Meta:
         #managed = False
         db_table = 'papers'

@@ -5,7 +5,7 @@ from .models import Urls, Citations, Keywords
 # Register your models here.
 
 class PapersAdmin(admin.ModelAdmin):
-    fieldsets = [('Description',{'fields':['id','title','abstract','year', 'venue', 'venuetype', 'pages', 'volume', 'number']}),
+    fieldsets = [('Description',{'fields':['title','abstract','year', 'venue', 'venuetype', 'pages', 'volume', 'number']}),
                 ('Publisher',{'fields':['publisher','pubaddress']}),
                  ('Status',{'fields':['version','versionname','public']}),]
     list_filter = [('crawldate')]
