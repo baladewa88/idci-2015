@@ -1,0 +1,53 @@
+{% extends "idciapp/index.html" %}
+
+{% block title %}IDCI | Paper Search IDCI{% endblock %}
+
+{% block content %}
+<h2>Search Result</h2>
+
+
+<ol>
+{% for contact in list %}
+<li>{{ contact.title|upper }} <br> 
+Citation : {{ lists.ncites}} times
+<br />
+<p>{{ contact.abstract}}</p> 
+<br />
+</li>
+{% endfor %}
+</ol>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if list.has_previous %}
+            <a href="{% url "title_search" %}?page={{ list.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ list.number }} of {{ list.paginator.num_pages }}.
+        </span>
+
+        {% if list.has_next %}
+            <a href="?page={{ list.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+
+{% endblock %}
+
+{% block rightbar %}
+<h2>Related Paper :</h2><br><br>
+{{paperdetail.abstract|linebreaks }}
+{% endblock %}
+
+{% block middletext %}
+{% endblock %}
+
+{% block topleft %}
+{% endblock %}
+
+{% block topmid %}
+{% endblock %}
+
+{% block topright %}
+{% endblock %}

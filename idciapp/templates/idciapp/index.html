@@ -93,9 +93,9 @@
     <div id="title" class="tab-pane fade in active">
       <h3>Search Based on Title</h3>
 
-    <form method="GET" action="search" class="post-form">
+    <form method="GET" action="tsearch" class="post-form">
         <table>
-            {{ form.as_p }}
+            {{ tform.as_p }}
             <tr>
                 <td colspan=2>
                     <input type="submit" value="Search" class="save	btn	btn-default">
@@ -106,12 +106,33 @@
 
     </div>
     <div id="author" class="tab-pane fade">
-      <h3>Menu 1</h3>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <h3>Search Based on Author</h3>
+
+    <form method="GET" action="asearch" class="post-form">
+        <table>
+            {{ aform.as_p }}
+            <tr>
+                <td colspan=2>
+                    <input type="submit" value="Search" class="save	btn	btn-default">
+                </td>
+            </tr>
+        </table>
+    </form>
     </div>
     <div id="publisher" class="tab-pane fade">
-      <h3>Menu 2</h3>
-      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+            <h3>Search Based on Publisher</h3>
+
+    <form method="GET" action="psearch" class="post-form">
+        <table>
+            {{ pform.as_p }}
+            <tr>
+                <td colspan=2>
+                    <input type="submit" value="Search" class="save	btn	btn-default">
+                </td>
+            </tr>
+        </table>
+    </form>
+
     </div>
   </div>
 

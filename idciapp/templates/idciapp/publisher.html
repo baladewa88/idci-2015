@@ -1,0 +1,35 @@
+{% extends "idciapp/index.html" %}
+
+{% block title %}IDCI | Paper Search IDCI{% endblock %}
+
+{% block content %}
+<h2>Search Result</h2>
+
+<ol>
+{% for lists in list %}
+<li>{{ lists.title }} : Citation : {{ lists.ncites}} times
+<br />
+<p>{{ lists.abstract}}</p> 
+</li>
+{% endfor %}
+</ol>
+
+
+{% endblock %}
+
+{% block rightbar %}
+<h2>Related Paper :</h2><br><br>
+{{paperdetail.abstract|linebreaks }}
+{% endblock %}
+
+{% block middletext %}
+{% endblock %}
+
+{% block topleft %}
+{% endblock %}
+
+{% block topmid %}
+{% endblock %}
+
+{% block topright %}
+{% endblock %}
