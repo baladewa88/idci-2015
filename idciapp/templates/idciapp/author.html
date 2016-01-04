@@ -1,15 +1,14 @@
 {% extends "idciapp/index.html" %}
 
-{% block title %}IDCI | Paper Search IDCI{% endblock %}
+{% block title %}IDCI | Author Search IDCI{% endblock %}
 
 {% block content %}
 <h2>Search Result</h2>
 
 <ol>
-{% for lists in list %}
-<li>{{ lists.title }} : Citation : {{ lists.ncites}} times
-<br />
-<p>{{ lists.abstract}}</p> 
+{% for list in author %}
+<li>{{ list.name }}<br />
+{{ list.affil }} | {{ list.address }} 
 </li>
 {% endfor %}
 </ol>

@@ -169,7 +169,6 @@ class Citations(models.Model):
         #managed = False
         db_table = 'citations'
 
-
 class Citecharts(models.Model):
     id = models.ForeignKey('Papers', db_column='id', primary_key=True)
     lastncites = models.IntegerField(db_column='lastNcites')  # Field name made lowercase.
@@ -305,22 +304,11 @@ class LinkTypes(models.Model):
         #managed = False
         db_table = 'link_types'
 
-class PapersId(models.Manager):
-    def defineId(self):
-        from django.db import connection
-        cursor = connection.cursor()
-        cursor.execute("""SELECT * FROM papers""")
-        rowCount = 0
-        for row in cursor.fetchall():
-            rowCount=rowCount+1
-        return rowCount+1
-        
 class Papers(models.Model):
 
-    ea = PapersId()
-    print ("EEAAAA => "+str(ea.defineId()))
+    ea = models.Manager()
 
-    id = models.CharField(primary_key=True, max_length=100, default=ea.defineId(), verbose_name = 'ID')   
+    id = models.CharField(primary_key=True, max_length=100, verbose_name = 'ID')   
     version = models.IntegerField()
     cluster = models.BigIntegerField(blank=True, null=True)
     title = models.CharField(max_length=255, blank=True, null=True, verbose_name = 'Title')

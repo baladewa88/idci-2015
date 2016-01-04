@@ -32,7 +32,7 @@ def search (request):
 
 def titlesearch (request):
     form = PaperSearch(request.GET)
-    paperLists = Papers.ea.filter(title__contains=form['title'].value())
+    paperLists = Papers.ea.filter(title__icontains=form['title'].value())
     paginator = Paginator(paperLists, 5)
 
     page = request.GET.get('page')
@@ -52,10 +52,10 @@ def titlesearch (request):
 
 def authorsearch (request):
     aform = AuthorSearch(request.GET)
-    author = Authors.ea.filter(name=aform['name'].value())[:15]
-    return render(request, 'idciapp/author.html', {'author':aform})
+    author = Authors.objects.filter(name__icontains=aform['name'].value())[:15]
+    return render(request, 'idciapp/author.html', {'author':author})
 
 def publishersearch (request):
-    pform = PaperSearch(request.GET)
-    publisher = Papers.ea.filter(title=pform['title'].value())
+    pform = PublisherSearch(request.GET)
+    publisher = Papers.ea.filter(publisher__icontains=pform['publisher'].value())[:15]
     return render(request, 'idciapp/publisher.html', {'publisher':publisher})
