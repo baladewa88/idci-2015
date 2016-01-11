@@ -21,7 +21,8 @@ def paperdetail(request, pk, judul):
     ref = Citations.objects.filter(paperid=pk).order_by('id')
     author = Authors.objects.filter(paperid=pk).order_by('id')
     citedd = Citations.objects.filter(title=judul).order_by('id')
-
+    cite = ""
+    
     for c in citedd:
         cited = Papers.ea.filter(id=c.paperid).order_by('id')
                                                              
