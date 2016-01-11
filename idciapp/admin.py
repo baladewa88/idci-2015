@@ -51,6 +51,7 @@ class PapersAdmin(admin.ModelAdmin):
         a = rowCount+1
         obj.id=a
         print ("Jumlah => "+str(a))
+        print ("Jumlah => "+str(obj.id))
         print ("Jumlah 2 => "+str(refCount))
         obj.ncites = refCount
         obj.save()
