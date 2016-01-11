@@ -42,6 +42,7 @@ class PapersAdmin(admin.ModelAdmin):
     list_filter = [('crawldate')]
     list_display = ('id','title','ncites','selfcites')
     ordering = ('-crawldate',)
+    exclude = ['id']
 
     a=0
     def save_model(self, request, obj, form, change):
