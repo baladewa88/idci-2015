@@ -7,19 +7,25 @@
 Author :
 <ol>
 {% for penulis in author %}
-<li>{{ penulis.name }},{{ penulis.email}}. {{ penulis.affil}}</li>
+<li>{{ penulis.name }}, {{ penulis.affil}}</li>
 {% endfor %}
 </ol>
 <hr>
-{{paperdetail.abstract|linebreaks }}
-<hr>
+<span class="glyphicon glyphicon-save"></span><a href="{{url.url}}">Download Paper</a> 
+<br /><br /><div class="abstrak"><h3>Abstract</h3><p>{{paperdetail.abstract|linebreaks }}</p></div>
+<br />
 Publisher : {{paperdetail.publisher }} | {{paperdetail.crawlDate }}
-<br>Citation : {{paperdetail.ncites}} | Self Citation : {{paperdetail.selfCites}}
-<br><br><p>
+<br />{{paperdetail.publisher }}
+<br />Citation : {{paperdetail.ncites}} | Self Citation : {{paperdetail.selfCites}}
+<br />Author Keywords : {% for a in keyword %}
+{{ a.keyword }},
+{% endfor %}
+
+<br /><br /><p>
 References : <br>
 <ol>
 {% for d in ref %}
-<li>{{ d.authors }},{{ d.title}}</li>
+<li>{{ d.authors }}<br />{{ d.title}} <br />Post on {{d.year}}<hr></li>
 {% endfor %}
 </ol>
 </p>
@@ -29,21 +35,27 @@ References : <br>
 <div class="panel panel-default">
   <div class="panel-heading"><h4>Cited by {{paperdetail.ncites}} documents</h4></div>
   <div class="panel-body">
-  <ul>{% for e in title %}
+  <ul>{% for r in cited %}
   
-<li>{{ e.title }} <br><i> Authors{{ e.authors}}</i></li>
+<li><a href="{% url "paperdetail" pk=r.paperid.pk judul=r.title %}">{{ r.paperid }}</a> <br></li>
 {% endfor %}
 </ul>
   </div>
 </div>
 <hr>
 <h2>Related Document</h2><br><br>
-{{paperdetail.abstract|linebreaks }}
+<ul>{% for e in title %}
+  
+<li><a href="{% url "paperdetail" pk=e.pk judul=e.title %}">{{ e.title }}</a> <br><i>Cited {{e.ncites}} times</i></li>
+{% endfor %}
+</ul>
 {% endblock %}
 
 {% block middletext %}
-Keywords : 
-{% for a in keyword %}
-{{ a.keyword }},
-{% endfor %}
+{% endblock %}
+
+{% block topmid %}
+{% endblock %}
+
+{% block topleft %}
 {% endblock %}

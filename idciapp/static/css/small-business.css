@@ -16,6 +16,13 @@ body {
     padding: 0 15px;
 }
 
+.abstrak {
+     border: 1px solid;
+    border-radius: 10px;
+	border-color:#D9D9D9;
+	padding: 10px;
+}
+
 footer {
     padding: 30px 0;
 }

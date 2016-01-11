@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404, render_to_response
-from .models import Papers, Authors, Keywords, Citations
+from .models import Papers, Authors, Keywords, Citations, Urls
 from django.utils import timezone
 from .forms import PaperForm, PaperSearch,AuthorSearch,PublisherSearch
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from itertools import chain
 
 # Create your views here.
 
@@ -19,9 +20,16 @@ def paperdetail(request, pk, judul):
     key = Keywords.objects.filter(paperid=pk).order_by('id')
     ref = Citations.objects.filter(paperid=pk).order_by('id')
     author = Authors.objects.filter(paperid=pk).order_by('id')
-    cite = Citations.objects.filter(title=judul).order_by('id')
+    citedd = Citations.objects.filter(title=judul).order_by('id')
 
-    return render(request, 'idciapp/detail.html', {'paperdetail': detailPaper, 'keyword':key, 'ref':ref, 'author':author, 'title':cite})
+    for c in citedd:
+        cited = Papers.ea.filter(id=c.paperid).order_by('id')
+                                                             
+    for a in key:
+        cite = Papers.ea.filter(title__icontains=a.keyword).order_by('id')
+            
+    dl = Urls.objects.get(paperid=pk)
+    return render(request, 'idciapp/detail.html', {'paperdetail': detailPaper, 'keyword':key, 'ref':ref, 'author':author, 'title':cite, 'cited':citedd, 'url':dl})
 
 def about (request):
     return render(request, 'idciapp/about.html', {})
