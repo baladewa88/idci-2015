@@ -43,6 +43,7 @@ class PapersAdmin(admin.ModelAdmin):
     list_display = ('id','title','ncites','selfcites')
     ordering = ('-crawldate',)
 
+    a=0
     def save_model(self, request, obj, form, change):
         
         rowCount = Papers.ea.all().count()
