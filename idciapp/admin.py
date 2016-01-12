@@ -46,10 +46,11 @@ class PapersAdmin(admin.ModelAdmin):
 
     a=0
     def save_model(self, request, obj, form, change):
+        obj.id = 0
         rowCount = Papers.ea.all().count()
         refCount = Citations.objects.filter(title=form.cleaned_data['title']).count()
         a = rowCount+1
-        obj.id=""+str(a)
+        obj.id=a
         print ("Jumlah => "+str(a))
         print ("Jumlah => "+str(obj.id))
         print ("Jumlah 2 => "+str(refCount))
