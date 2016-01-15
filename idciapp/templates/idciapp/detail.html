@@ -7,22 +7,25 @@
 Author :
 <ol>
 {% for penulis in author %}
-<li>{{ penulis.name }}, {{ penulis.affil}}</li>
+<li><a href="{% url "authorlist" nama=penulis.name %}">{{ penulis.name }}</a>, {{ penulis.affil}} <a href="mailto:{{penulis.email}}"><span class="glyphicon glyphicon-envelope"></span></a> </li>
 {% endfor %}
 </ol>
 <hr>
 <span class="glyphicon glyphicon-save"></span><a href="{{url.url}}">Download Paper</a> 
 <br /><br /><div class="abstrak"><h3>Abstract</h3><p>{{paperdetail.abstract|linebreaks }}</p></div>
 <br />
-Publisher : {{paperdetail.publisher }} | {{paperdetail.crawlDate }}
-<br />{{paperdetail.publisher }}
+Publisher : {{paperdetail.publisher }}
+<br />Index at {{paperdetail.crawlDate }}
+<br />Source Type : {{paperdetail.venueType}}
+<br />Source Title : {{paperdetail.venue}} {{paperdetail.pages}} pages. Vol. {{paperdetail.volume}} Number.{{paperdetail.number}} 
 <br />Citation : {{paperdetail.ncites}} | Self Citation : {{paperdetail.selfCites}}
-<br />Author Keywords : {% for a in keyword %}
+<hr><h3>Author Keywords </h3> 
+<br />{% for a in keyword %}
 {{ a.keyword }},
 {% endfor %}
-
-<br /><br /><p>
-References : <br>
+<hr>
+<p>
+<h3>References </h3> <br>
 <ol>
 {% for d in ref %}
 <li>{{ d.authors }}<br />{{ d.title}} <br />Post on {{d.year}}<hr></li>

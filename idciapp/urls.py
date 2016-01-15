@@ -6,6 +6,7 @@ urlpatterns = [
     url(r'^about/?$', views.about, name='about'),
     #url(r'^paper/(?P<pk>\S+)/$', views.paperdetail, name='paperdetail'),
     url(r'^paper/(?P<pk>\S+)/(?P<judul>.+)/$', views.paperdetail, name='paperdetail'),
+    url(r'^author/(?P<nama>.+)/$', views.authorlist, name='authorlist'),
     url(r'^adsearch/?$', views.search, name='search'),
     #url(r'^search/', include('haystack.urls')),
     #url(r'^search/', views.titlesearch, name='titlesearch'),

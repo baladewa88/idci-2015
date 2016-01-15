@@ -6,9 +6,10 @@
 <h2>Search Result</h2>
 
 <ol>
-{% for list in author %}
-<li><a href="{% url "authorlist" nama=list.name %}">{{ list.name }} | {{pap}}</a><br />
-{{ list.affil }} | {{ list.address }} 
+{% for list in lists %}
+<li><a href="{% url "paperdetail" pk=list.pk judul=list.title %}">{{ list.title }}</a><br />
+Cited {{ list.ncites }} times
+<p class = "abstrak"> Abstract <br /><br />{{ list.abstract }}</p>
 </li>
 {% endfor %}
 </ol>
@@ -17,8 +18,6 @@
 {% endblock %}
 
 {% block rightbar %}
-<h2>Related Paper :</h2><br><br>
-{{paperdetail.abstract|linebreaks }}
 {% endblock %}
 
 {% block middletext %}

@@ -32,6 +32,15 @@ def paperdetail(request, pk, judul):
     dl = Urls.objects.get(paperid=pk)
     return render(request, 'idciapp/detail.html', {'paperdetail': detailPaper, 'keyword':key, 'ref':ref, 'author':author, 'title':cite, 'cited':citedd, 'url':dl})
 
+def authorlist(request, nama):
+    author = Authors.objects.filter(name=nama).order_by('id')
+                                         
+    for a in author:
+        print ("paperid based on author > "+str(a.paperid))
+        cite = Papers.ea.filter(title=a.paperid)
+
+    return render(request, 'idciapp/authorlist.html', {'lists': cite})
+
 def about (request):
     return render(request, 'idciapp/about.html', {})
 
@@ -62,7 +71,11 @@ def titlesearch (request):
 def authorsearch (request):
     aform = AuthorSearch(request.GET)
     author = Authors.objects.filter(name__icontains=aform['name'].value())[:15]
-    return render(request, 'idciapp/author.html', {'author':author})
+
+    for a in author:
+        pap = Authors.objects.filter(name=a.name).count()
+        
+    return render(request, 'idciapp/author.html', {'author':author, 'pap':pap})
 
 def publishersearch (request):
     pform = PublisherSearch(request.GET)

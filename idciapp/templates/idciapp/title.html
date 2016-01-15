@@ -4,14 +4,12 @@
 
 {% block content %}
 <h2>Search Result</h2>
-
-
 <ol>
 {% for contact in list %}
-<li>{{ contact.title|upper }} <br> 
-Citation : {{ lists.ncites}} times
+<li><a href="{% url "paperdetail" pk=contact.pk judul=contact.title %}">{{ contact.title|upper }}</a> <br> 
+Citation : {{ contact.ncites}} times
 <br />
-<p>{{ contact.abstract}}</p> 
+<p class="abstrak">Abstract <br /><br />{{ contact.abstract}}</p> 
 <br />
 </li>
 {% endfor %}
@@ -36,8 +34,6 @@ Citation : {{ lists.ncites}} times
 {% endblock %}
 
 {% block rightbar %}
-<h2>Related Paper :</h2><br><br>
-{{paperdetail.abstract|linebreaks }}
 {% endblock %}
 
 {% block middletext %}

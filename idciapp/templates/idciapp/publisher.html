@@ -7,9 +7,9 @@
 
 <ol>
 {% for lists in publisher %}
-<li>{{ lists.title }} : Citation : {{ lists.ncites}} times
+<li><a href="{% url "paperdetail" pk=lists.pk judul=lists.title %}">{{ lists.title }}</a> <br /> Cited : {{ lists.ncites}} times
 <br />
-<p>{{ lists.abstract}}</p> 
+<p class="abstrak">Abstract <br /><br />{{ lists.abstract}}</p> 
 </li>
 {% endfor %}
 </ol>
