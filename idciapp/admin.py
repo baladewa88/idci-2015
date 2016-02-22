@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Papers, Citations
 from .models import Urls, Citations, Keywords, Authors
-from .forms import CitationInlineFormset
+from .forms import CitationInlineFormset, PaperForm
 
 # Register your models here.
 
@@ -10,9 +10,10 @@ class CitationInline(admin.StackedInline):
     extra = 3
     exclude = ['id', 'cluster']
     #list_display = ('authors','title','venue','venueType','year','pages','editors','publisher','pubAddress','volume','number','raw')
-
+    form = PaperForm
 #    model = YourInlineModel
     formset = CitationInlineFormset
+    
 
     def get_formset(self, request, obj=None, **kwargs):
         formset = super(CitationInline, self).get_formset(request, obj, **kwargs)
@@ -36,11 +37,11 @@ class AuthorInline(admin.StackedInline):
     exclude = ['id','cluster']
 
 class PapersAdmin(admin.ModelAdmin):
-    fieldsets = [('Description',{'fields':['title','abstract','year', 'venue', 'venuetype', 'pages', 'volume', 'number','selfcites']}),
-                ('Publisher',{'fields':['publisher','pubaddress']}),
+    fieldsets = [('Description',{'fields':['title','abstract','kodebuku','year', 'venue', 'venuetype', 'pages', 'volume', 'number','selfcites']}),
+                ('Affiliation',{'fields':['affiliasi','publisher','pubaddress']}),
                  ('Status',{'fields':['version','versionname','public']}),]
     list_filter = [('crawldate')]
-    list_display = ('id','title','ncites','selfcites')
+    list_display = ('id','title','affiliasi','ncites','selfcites')
     ordering = ('-crawldate',)
     
     a=0

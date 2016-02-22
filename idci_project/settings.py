@@ -41,6 +41,9 @@ INSTALLED_APPS = (
     'haystack',
     'idciapp',
     'markdown_deux',
+    'dal',
+    'dal_select2',
+    'django_filters',
 )
 
 MIDDLEWARE_CLASSES = (

@@ -1,11 +1,27 @@
+from dal import autocomplete
 from django import forms
-from .models import Papers, Authors
+from .models import Papers, Authors, Affiliations
+import django_filters
 
-class PaperForm(forms.ModelForm):
-
+class PaperFilter(django_filters.FilterSet):
     class Meta:
         model = Papers
-        fields = ('title','abstract',)
+        fields = ['title','venue', 'year']
+        
+class PaperForm(forms.ModelForm):
+    
+    '''
+    paper_id = forms.ModelChoiceField(
+        choices=Papers.ea.all(),
+        widget=autocomplete.ModelSelect2(url='country-autocomplete')
+    )
+'''
+    class Meta:
+        model = Papers
+        fields = ('__all__')
+        widgets = {
+            'paper_id': autocomplete.ModelSelect2(url='country-autocomplete')
+        }
 
 class PaperSearch(forms.ModelForm):
 
@@ -22,8 +38,8 @@ class AuthorSearch(forms.ModelForm):
 class PublisherSearch(forms.ModelForm):
 
     class Meta:
-        model = Papers
-        fields = ('publisher',)
+        model = Affiliations
+        fields = ('name',)
 
 class CitationInlineFormset(forms.models.BaseInlineFormSet):
      def save_new(self, form, commit=True):

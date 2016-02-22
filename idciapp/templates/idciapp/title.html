@@ -3,9 +3,30 @@
 {% block title %}IDCI | Paper Search IDCI{% endblock %}
 
 {% block content %}
+    <form method="GET" action="tsearch" class="post-form">
+        <table>
+            {{ form.as_p }}
+            <tr>
+                <td colspan=2>
+                    <input type="submit" value="Search" class="save	btn	btn-default">
+                </td>
+            </tr>
+        </table>
+    </form>
+<br />
 <h2>Search Result</h2>
 <ol>
-{% for contact in list %}
+{% for obj in filter %}
+<li><a href="{% url "paperdetail" pk=obj.pk judul=obj.title %}">{{ obj.title|upper }}</a> <br>
+Affiliation : {{obj.affiliasi}} | Year : {{ obj.year }} <br /> 
+Citation : {{ obj.ncites}} times
+<br />
+<p class="abstrak">Abstract <br /><br />{{ obj.abstract}}</p> 
+<br />
+</li>
+{% endfor %}
+
+<!--{% for contact in list %}
 <li><a href="{% url "paperdetail" pk=contact.pk judul=contact.title %}">{{ contact.title|upper }}</a> <br> 
 Citation : {{ contact.ncites}} times
 <br />
@@ -14,6 +35,7 @@ Citation : {{ contact.ncites}} times
 </li>
 {% endfor %}
 </ol>
+-->
 
 <div class="pagination">
     <span class="step-links">
@@ -34,6 +56,22 @@ Citation : {{ contact.ncites}} times
 {% endblock %}
 
 {% block rightbar %}
+<hr>
+<h2>Filter Result</h2><br><br>
+    <form action="list" method="get">
+        {{ fd.form.as_p }}
+        <input type="submit" />
+    </form>
+Year:
+<hr>
+Affiliation :
+<hr>
+Author Name :
+<hr>
+Source Title :
+<hr>
+Keyword :
+<hr>
 {% endblock %}
 
 {% block middletext %}

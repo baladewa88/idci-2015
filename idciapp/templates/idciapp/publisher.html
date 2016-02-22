@@ -3,13 +3,24 @@
 {% block title %}IDCI | Paper Search IDCI{% endblock %}
 
 {% block content %}
+<form method="GET" action="psearch" class="post-form">
+        <table>
+            {{ form.as_p }}
+            <tr>
+                <td colspan=2>
+                    <input type="submit" value="Search" class="save	btn	btn-default">
+                </td>
+            </tr>
+        </table>
+    </form>
+	
 <h2>Search Result</h2>
 
 <ol>
-{% for lists in publisher %}
-<li><a href="{% url "paperdetail" pk=lists.pk judul=lists.title %}">{{ lists.title }}</a> <br /> Cited : {{ lists.ncites}} times
-<br />
-<p class="abstrak">Abstract <br /><br />{{ lists.abstract}}</p> 
+<ol>
+{% for list in publisher %}
+<li><a href="{% url "afflist" nama=list.name %}">{{ list.name }} | {{pap}}</a><br />
+Affiliasi : {{ list.affil }} | {{ list.email }} 
 </li>
 {% endfor %}
 </ol>

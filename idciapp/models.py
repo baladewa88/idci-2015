@@ -69,7 +69,9 @@ class Affiliations(models.Model):
     class Meta:
         #managed = False
         db_table = 'affiliations'
-
+    
+    def __str__(self):
+        return self.name
 
 class Authors(models.Model):
     id = models.BigIntegerField(primary_key=True)
@@ -308,14 +310,14 @@ class Papers(models.Model):
 
     ea = models.Manager()
 
-    id = models.CharField(primary_key=True, max_length=100, verbose_name = 'ID')   
+    id = models.CharField(primary_key=True, max_length=100)
     version = models.IntegerField()
     cluster = models.BigIntegerField(blank=True, null=True)
-    title = models.CharField(max_length=255, blank=True, null=True, verbose_name = 'Title')
+    title = models.CharField(max_length=255, blank=True, null=True)
     abstract = models.TextField(blank=True, null=True)
     year = models.IntegerField(blank=True, null=True)
-    venue = models.CharField(max_length=100, blank=True, null=True, verbose_name = 'Source Title')
-    venuetype = models.CharField(db_column='venueType', max_length=20, blank=True, null=True, verbose_name = 'Source Type')  # Field name made lowercase.
+    venue = models.CharField(max_length=100, blank=True, null=True)
+    venuetype = models.CharField(db_column='venueType', max_length=20, blank=True, null=True)  # Field name made lowercase.
     pages = models.CharField(max_length=20, blank=True, null=True)
     volume = models.IntegerField(blank=True, null=True)
     number = models.IntegerField(blank=True, null=True)
@@ -323,14 +325,16 @@ class Papers(models.Model):
     pubaddress = models.CharField(db_column='pubAddress', max_length=100, blank=True, null=True)  # Field name made lowercase.
     tech = models.CharField(max_length=100, blank=True, null=True)
     public = models.IntegerField()
-    ncites = models.IntegerField(default=0, verbose_name = 'Citations')
+    ncites = models.IntegerField()
     versionname = models.CharField(db_column='versionName', max_length=20, blank=True, null=True)  # Field name made lowercase.
-    crawldate = models.DateTimeField(db_column='crawlDate', blank=True, null=True, auto_now=True)  # Field name made lowercase.
+    crawldate = models.DateTimeField(db_column='crawlDate', default=0000-00-00)  # Field name made lowercase.
     repositoryid = models.CharField(db_column='repositoryID', max_length=15, blank=True, null=True)  # Field name made lowercase.
     conversiontrace = models.CharField(db_column='conversionTrace', max_length=255, blank=True, null=True)  # Field name made lowercase.
-    selfcites = models.IntegerField(db_column='selfCites',default=0, verbose_name = 'Self Citation')  # Field name made lowercase.
-    versiontime = models.DateTimeField(db_column='versionTime', blank=True, null=True, auto_now=True)  # Field name made lowercase.
-    
+    selfcites = models.IntegerField(db_column='selfCites')  # Field name made lowercase.
+    versiontime = models.DateTimeField(db_column='versionTime', default=0000-00-00)  # Field name made lowercase.
+    affiliasi = models.ForeignKey(Affiliations, db_column='affiliasi', default=0)
+    kodebuku = models.CharField(db_column='kodeBuku', max_length=10, default=0)  # Field name made lowercase.
+
     class Meta:
         #managed = False
         db_table = 'papers'
